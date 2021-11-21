@@ -62,26 +62,6 @@ export default function Account({navigation, route}) {
             alignItems: 'center',
             padding: 10,
           }}>
-          <View
-            style={{
-              borderRadius: 75,
-
-              justifyContent: 'center',
-              alignItems: 'center',
-              overflow: 'hidden',
-            }}>
-            <Image
-              source={{
-                uri:
-                  user.foto == null
-                    ? 'https://zavalabs.com/nogambar.jpg'
-                    : user.foto,
-              }}
-              resizeMode="cover"
-              style={{width: 100, aspectRatio: 1}}
-            />
-          </View>
-
           <Text
             style={{
               fontFamily: fonts.secondary[600],
@@ -96,7 +76,7 @@ export default function Account({navigation, route}) {
               fontSize: windowWidth / 20,
               color: colors.black,
             }}>
-            {user.nik}
+            {user.nip}
           </Text>
         </View>
         {/* data detail */}
@@ -153,7 +133,51 @@ export default function Account({navigation, route}) {
                   fontFamily: fonts.secondary[400],
                   color: colors.primary,
                 }}>
-                {user.tlp}
+                {user.telepon}
+              </Text>
+            </View>
+            <View
+              style={{
+                marginVertical: 5,
+                padding: 10,
+                backgroundColor: colors.white,
+                borderRadius: 10,
+              }}>
+              <Text
+                style={{
+                  fontFamily: fonts.secondary[600],
+                  color: colors.black,
+                }}>
+                Divisi
+              </Text>
+              <Text
+                style={{
+                  fontFamily: fonts.secondary[400],
+                  color: colors.primary,
+                }}>
+                {user.divisi}
+              </Text>
+            </View>
+            <View
+              style={{
+                marginVertical: 5,
+                padding: 10,
+                backgroundColor: colors.white,
+                borderRadius: 10,
+              }}>
+              <Text
+                style={{
+                  fontFamily: fonts.secondary[600],
+                  color: colors.black,
+                }}>
+                Jabatan
+              </Text>
+              <Text
+                style={{
+                  fontFamily: fonts.secondary[400],
+                  color: colors.primary,
+                }}>
+                {user.jabatan}
               </Text>
             </View>
           </View>

@@ -20,13 +20,12 @@ import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {showMessage} from 'react-native-flash-message';
 import GetLocation from 'react-native-get-location';
 import {getDistance, convertDistance} from 'geolib';
-export default function Keluar({navigation, route}) {
+export default function Masuk({navigation, route}) {
   const items = route.params;
   // console.log('hasil sebelumya', items);
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   const [loading, setLoading] = useState(true);
-  const [tipe, setTipe] = useState('');
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
   const [data, setData] = useState({
@@ -34,14 +33,12 @@ export default function Keluar({navigation, route}) {
     email: null,
     password: null,
     tlp: null,
-    suhu: null,
     alamat: null,
   });
 
   const [kirim, setKirim] = useState({
     foto: null,
-    jenis: 'KELUAR',
-    suhu: '',
+    jenis: 'PULANG',
   });
 
   const options = {
@@ -75,40 +72,9 @@ export default function Keluar({navigation, route}) {
     });
   };
 
-  const getGallery = xyz => {
-    launchImageLibrary(options, response => {
-      console.log('All Response = ', response);
-
-      console.log('Ukuran = ', response.fileSize);
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('Image Picker Error: ', response.error);
-      } else {
-        if (response.fileSize <= 200000) {
-          let source = {uri: response.uri};
-          switch (xyz) {
-            case 1:
-              setData({
-                ...data,
-                foto: `data:${response.type};base64, ${response.base64}`,
-              });
-              break;
-          }
-        } else {
-          showMessage({
-            message: 'Ukuran Foto Terlalu Besar Max 500 KB',
-            type: 'danger',
-          });
-        }
-      }
-    });
-  };
-
   useEffect(() => {
     getData('user').then(res => {
       setData(res);
-
       console.log(res);
       GetLocation.getCurrentPosition({
         enableHighAccuracy: true,
@@ -120,7 +86,6 @@ export default function Keluar({navigation, route}) {
 
           setLongitude(location.longitude);
           setLoading(false);
-
           setKirim({
             ...kirim,
             ref_member: res.id,
@@ -131,6 +96,7 @@ export default function Keluar({navigation, route}) {
           const jarak = getDistance(
             {latitude: res.latitude, longitude: res.longitude},
             {latitude: location.latitude, longitude: location.longitude},
+            1,
           );
         })
         .catch(error => {
@@ -143,20 +109,17 @@ export default function Keluar({navigation, route}) {
 
   const simpan = () => {
     // setLoading(true);
-
+    // alert(kirim.suhu.length);
     console.log('kirim ke server', kirim);
-    if (kirim.suhu.length === 0) {
-      alert('Silahkan isi suhu tubuh');
-    } else {
-      axios
-        .post('https://zavalabs.com/ekpp/api/transaksi_add.php', kirim)
-        .then(x => {
-          setLoading(false);
-          alert('Absensi Masuk Berhasil Di Kirim');
-          // console.log('respose server', x);
-          navigation.navigate('MainApp');
-        });
-    }
+
+    axios
+      .post('https://zavalabs.com/tubaba/api/absen_add.php', kirim)
+      .then(x => {
+        setLoading(false);
+        alert('Absensi Masuk Berhasil Di Kirim');
+        console.log('respose server', x);
+        navigation.navigate('MainApp');
+      });
   };
   return (
     <SafeAreaView style={styles.page}>
@@ -216,7 +179,7 @@ export default function Keluar({navigation, route}) {
             fontSize: windowWidth / 15,
             marginBottom: 5,
           }}>
-          ABSEN KELUAR
+          ABSEN PULANG
         </Text>
 
         <View>
@@ -251,29 +214,8 @@ export default function Keluar({navigation, route}) {
           />
         </View>
       </View>
-
-      <View
-        style={{
-          backgroundColor: colors.white,
-          // padding: 10,
-        }}>
-        <MyInput
-          iconname="thermometer"
-          placeholder="masukan suhu tubuh"
-          label="Masukan Suhu Tubuh"
-          value={kirim.suhu}
-          onChangeText={val =>
-            setKirim({
-              ...kirim,
-              suhu: val,
-            })
-          }
-        />
-      </View>
-
-      <MyGap jarak={20} />
       <MyButton
-        title="SIMPAN"
+        title="PULANG SEKARANG"
         Icons="cloud-upload-outline"
         warna={colors.primary}
         iconColor={colors.white}

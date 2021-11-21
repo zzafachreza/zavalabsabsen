@@ -23,26 +23,17 @@ export default function MyCarouser() {
   const navigation = useNavigation();
 
   useEffect(() => {
-    // axios.get('https://zavalabs.com/sebatiku/api/slider.php').then(res => {
-    //   setData(res.data);
-    // });
+    axios.get('https://zavalabs.com/tubaba/api/slider.php').then(res => {
+      console.log(res.data);
+      setData(res.data);
+    });
   }, []);
 
-  const [data, setData] = useState([
-    {
-      image: require('../../assets/ekpp1.jpeg'),
-    },
-    {
-      image: require('../../assets/ekpp2.jpeg'),
-    },
-    {
-      image: require('../../assets/ekpp3.jpeg'),
-    },
-  ]);
+  const [data, setData] = useState([]);
 
   const renderCarouselItem = ({item}) => (
     <Image
-      source={item.image}
+      source={{uri: item.image}}
       style={{
         resizeMode: 'cover',
         height: 180,

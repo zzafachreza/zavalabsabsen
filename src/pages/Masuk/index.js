@@ -33,14 +33,12 @@ export default function Masuk({navigation, route}) {
     email: null,
     password: null,
     tlp: null,
-    suhu: '',
     alamat: null,
   });
 
   const [kirim, setKirim] = useState({
     foto: null,
     jenis: 'MASUK',
-    suhu: '',
   });
 
   const options = {
@@ -74,40 +72,9 @@ export default function Masuk({navigation, route}) {
     });
   };
 
-  const getGallery = xyz => {
-    launchImageLibrary(options, response => {
-      console.log('All Response = ', response);
-
-      console.log('Ukuran = ', response.fileSize);
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('Image Picker Error: ', response.error);
-      } else {
-        if (response.fileSize <= 200000) {
-          let source = {uri: response.uri};
-          switch (xyz) {
-            case 1:
-              setData({
-                ...data,
-                foto: `data:${response.type};base64, ${response.base64}`,
-              });
-              break;
-          }
-        } else {
-          showMessage({
-            message: 'Ukuran Foto Terlalu Besar Max 500 KB',
-            type: 'danger',
-          });
-        }
-      }
-    });
-  };
-
   useEffect(() => {
     getData('user').then(res => {
       setData(res);
-
       console.log(res);
       GetLocation.getCurrentPosition({
         enableHighAccuracy: true,
@@ -141,21 +108,18 @@ export default function Masuk({navigation, route}) {
   }, []);
 
   const simpan = () => {
-    setLoading(true);
+    // setLoading(true);
     // alert(kirim.suhu.length);
     console.log('kirim ke server', kirim);
-    if (kirim.suhu.length === 0) {
-      alert('Silahkan isi suhu tubuh');
-    } else {
-      axios
-        .post('https://zavalabs.com/ekpp/api/transaksi_add.php', kirim)
-        .then(x => {
-          setLoading(false);
-          alert('Absensi Masuk Berhasil Di Kirim');
-          // console.log('respose server', x);
-          navigation.navigate('MainApp');
-        });
-    }
+
+    axios
+      .post('https://zavalabs.com/tubaba/api/absen_add.php', kirim)
+      .then(x => {
+        setLoading(false);
+        alert('Absensi Masuk Berhasil Di Kirim');
+        console.log('respose server', x);
+        navigation.navigate('MainApp');
+      });
   };
   return (
     <SafeAreaView style={styles.page}>
@@ -250,29 +214,10 @@ export default function Masuk({navigation, route}) {
           />
         </View>
       </View>
-      <View
-        style={{
-          backgroundColor: colors.white,
-          // padding: 10,
-        }}>
-        <MyInput
-          iconname="thermometer"
-          placeholder="masukan suhu tubuh"
-          label="Masukan Suhu Tubuh"
-          value={kirim.suhu}
-          onChangeText={val =>
-            setKirim({
-              ...kirim,
-              suhu: val,
-            })
-          }
-        />
-      </View>
-      <MyGap jarak={20} />
       <MyButton
-        title="SIMPAN"
+        title="MASUK SEKARANG"
         Icons="cloud-upload-outline"
-        warna={colors.primary}
+        warna={colors.secondary}
         iconColor={colors.white}
         colorText={colors.white}
         onPress={simpan}

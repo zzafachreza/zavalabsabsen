@@ -15,6 +15,7 @@ import {storeData, getData} from '../../utils/localStorage';
 import axios from 'axios';
 import {colors} from '../../utils/colors';
 import {windowWidth, fonts} from '../../utils/fonts';
+import {Icon} from 'react-native-elements';
 
 const wait = timeout => {
   return new Promise(resolve => {
@@ -36,125 +37,189 @@ export default function ({navigation, route}) {
   }, []);
 
   const getDataBarang = () => {
-    axios.get('https://zavalabs.com/ekpp/api/pinjam.php').then(res => {
-      setData(res.data);
+    getData('user').then(res => {
+      axios
+        .post('https://zavalabs.com/tubaba/api/absen_izin.php', {
+          id_user: res.id,
+        })
+        .then(x => {
+          console.log(x.data);
+          setData(x.data);
+        });
     });
   };
 
   const renderItem = ({item}) => (
-    <>
-      <View style={{padding: 10, backgroundColor: colors.secondary}}>
+    <View
+      style={{
+        padding: 10,
+        margin: 10,
+        backgroundColor: 'white',
+        elevation: 1,
+      }}>
+      <View style={{flexDirection: 'row', padding: 10}}>
+        <Text
+          style={{
+            flex: 1,
+            fontSize: windowWidth / 30,
+            color: colors.secondary,
+            fontFamily: fonts.secondary[600],
+          }}>
+          {item.nama_lengkap}
+        </Text>
         <Text
           style={{
             fontSize: windowWidth / 30,
-            color: colors.white,
+            color: colors.black,
             fontFamily: fonts.secondary[600],
           }}>
-          {item.status}
+          {item.tanggal}
         </Text>
       </View>
 
       <View
-        //   onPress={() => navigation.navigate('Pinjam', item)}
         style={{
-          padding: 10,
-          backgroundColor: 'white',
-
-          // height: 80,
           flexDirection: 'row',
+          padding: 10,
+          borderTopWidth: 1,
+          borderTopColor: colors.tertiary,
         }}>
         <View
           style={{
-            flex: 2,
+            alignItems: 'center',
             justifyContent: 'center',
+            // flex: 1,
           }}>
           <Text
             style={{
               fontSize: windowWidth / 30,
+              fontFamily: fonts.secondary[600],
               color: colors.black,
-              fontFamily: fonts.secondary[600],
             }}>
-            {item.nama_lengkap}
+            {item.tipe}
           </Text>
           <Text
             style={{
               fontSize: windowWidth / 30,
+              textAlign: 'center',
               color: colors.secondary,
-              fontFamily: fonts.secondary[600],
             }}>
-            {item.tanggal_pinjam}
+            {item.jam_masuk}
           </Text>
-
+        </View>
+        <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
           <Text
             style={{
-              fontSize: windowWidth / 30,
-              color: colors.primary,
-              fontFamily: fonts.secondary[600],
+              fontSize: windowWidth / 35,
+              textAlign: 'center',
+              color: colors.black,
             }}>
-            {item.nama_barang}
+            STATUS
           </Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+            <Icon
+              type="ionicon"
+              name={
+                item.status == 'DISETUJUI'
+                  ? 'shield-checkmark-outline'
+                  : 'mail-unread-outline'
+              }
+              color={
+                item.status == 'DISETUJUI' ? colors.secondary : colors.primary
+              }
+            />
+            <Text
+              style={{
+                left: 5,
+                fontSize: windowWidth / 35,
+                textAlign: 'center',
+                color:
+                  item.status == 'DISETUJUI'
+                    ? colors.secondary
+                    : colors.primary,
+              }}>
+              {item.status}
+            </Text>
+          </View>
         </View>
         <View
           style={{
             alignItems: 'center',
             justifyContent: 'center',
 
-            flex: 1,
+            // flex: 1,
           }}>
           <Text
             style={{
-              fontSize: 20,
-              fontFamily: 'Montserrat-Medium',
+              fontSize: windowWidth / 30,
+              fontFamily: fonts.secondary[600],
               color: colors.black,
             }}>
-            {item.qty}
+            {item.jumlah} hari
           </Text>
           <Text
             style={{
-              fontSize: 10,
+              fontSize: windowWidth / 30,
               textAlign: 'center',
               color: colors.secondary,
             }}>
-            Jumlah
+            {item.jam_pulang}
           </Text>
         </View>
       </View>
-
-      <TouchableOpacity
-        onPress={() => {
-          Alert.alert('LOGBOOK ALAT', 'Kembalikan Alat & Bahan Sekarang ?', [
-            {
-              text: 'Cancel',
-              onPress: () => console.log('Cancel Pressed'),
-              style: 'cancel',
-            },
-            {
-              text: 'OK',
-              onPress: () =>
-                axios
-                  .post('https://zavalabs.com/ekpp/api/transaksi_update.php', {
-                    id: item.id,
-                    qty: item.qty,
-                    id_barang: item.id_barang,
-                  })
-                  .then(res => {
-                    console.log(res);
-                    getDataBarang();
-                  }),
-            },
-          ]);
-        }}
-        style={{padding: 10, backgroundColor: '#CDCDCD', marginBottom: 10}}>
-        <Text
+      {item.status == 'MENUNGGU PERSETUJUAN' && (
+        <TouchableOpacity
+          onPress={() => {
+            Alert.alert(
+              'Absen Online',
+              'Apakah Anda Yakin Akan Batalkan Pengajuan ?',
+              [
+                {
+                  text: 'Cancel',
+                  onPress: () => console.log('Cancel Pressed'),
+                  style: 'cancel',
+                },
+                {
+                  text: 'OK',
+                  onPress: () => {
+                    axios
+                      .post(
+                        'https://zavalabs.com/tubaba/api/absen_izin_hapus.php',
+                        {
+                          id_izin: item.id_izin,
+                        },
+                      )
+                      .then(res => {
+                        getDataBarang();
+                      });
+                  },
+                },
+              ],
+            );
+          }}
           style={{
-            fontSize: windowWidth / 30,
-            textAlign: 'center',
-            color: colors.black,
+            padding: 10,
+            backgroundColor: colors.primary,
+            justifyContent: 'center',
+            alignItems: 'center',
           }}>
-          KEMBALIKAN SEKARANG
-        </Text>
-      </TouchableOpacity>
-    </>
+          <Text
+            style={{
+              fontSize: windowWidth / 30,
+              textAlign: 'center',
+              fontFamily: fonts.secondary[600],
+              color: colors.white,
+            }}>
+            Batalkan Izin
+          </Text>
+        </TouchableOpacity>
+      )}
+    </View>
   );
 
   return (

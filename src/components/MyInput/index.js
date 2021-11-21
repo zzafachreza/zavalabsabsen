@@ -16,6 +16,7 @@ export default function MyInput({
   styleInput,
   placeholder,
   autoFocus,
+  multiline,
   label2,
   styleLabel,
   colorIcon = colors.primary,
@@ -54,6 +55,7 @@ export default function MyInput({
         </Text>
       )}
       <TextInput
+        multiline={multiline}
         autoFocus={autoFocus}
         onFocus={onFocus}
         placeholder={placeholder}
@@ -67,7 +69,7 @@ export default function MyInput({
           borderRadius: 10,
           borderWidth: 1,
           paddingLeft: 10,
-          color:colors.black,
+          color: colors.black,
           fontSize: 18,
           fontFamily: fonts.primary[400],
           ...styleInput,

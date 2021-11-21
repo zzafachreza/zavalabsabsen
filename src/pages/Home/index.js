@@ -79,7 +79,7 @@ export default function Home({navigation}) {
       setUser(res);
 
       axios
-        .post('https://zavalabs.com/sigadisbekasi/api/point.php', {
+        .post('https://zavalabs.com/tubaba/api/point.php', {
           id_member: res.id,
         })
         .then(respoint => {
@@ -94,7 +94,7 @@ export default function Home({navigation}) {
     });
 
     axios
-      .post('https://zavalabs.com/sigadisbekasi/api/update_token.php', {
+      .post('https://zavalabs.com/tubaba/api/update_token.php', {
         id_member: user.id,
         token: token,
       })
@@ -256,7 +256,7 @@ export default function Home({navigation}) {
               nama2="ONLINE"
             />
             <DataKategori
-              onPress={() => navigation.navigate('Barang')}
+              onPress={() => navigation.navigate('SuratIzin')}
               icon="warning-outline"
               nama="PENGAJUAN"
               nama2="IZIN / SAKIT"
@@ -270,7 +270,7 @@ export default function Home({navigation}) {
               marginTop: 15,
             }}>
             <DataKategori
-              onPress={() => navigation.navigate('ListData2')}
+              onPress={() => navigation.navigate('ListData')}
               icon="book-outline"
               nama="HISTORY"
               nama2="ABSENSI"

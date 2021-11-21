@@ -36,9 +36,11 @@ import EditProfile from './EditProfile';
 import Pinjam from './Pinjam';
 import ListData2 from './ListData2';
 import Jadwal from './Jadwal';
+import SuratIzin from './SuratIzin';
 
 export {
   Splash,
+  SuratIzin,
   Jadwal,
   Pinjam,
   ListData2,

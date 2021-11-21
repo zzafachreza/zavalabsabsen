@@ -102,19 +102,21 @@ export default function EditProfile({navigation, route}) {
   const simpan = () => {
     setLoading(true);
     console.log('kirim edit', data);
-    axios.post('https://zavalabs.com/ekpp/api/profile.php', data).then(res => {
-      console.log(res);
-      storeData('user', res.data);
-      setLoading(false);
-      showMessage({
-        type: 'success',
-        message: 'Data bershasil diupdate..',
+    axios
+      .post('https://zavalabs.com/tubaba/api/profile.php', data)
+      .then(res => {
+        console.log(res);
+        storeData('user', res.data);
+        setLoading(false);
+        showMessage({
+          type: 'success',
+          message: 'Data bershasil diupdate..',
+        });
+
+        navigation.replace('MainApp');
+
+        // console.log(err[0]);
       });
-
-      navigation.replace('MainApp');
-
-      // console.log(err[0]);
-    });
   };
   return (
     <SafeAreaView style={styles.page}>
@@ -127,40 +129,6 @@ export default function EditProfile({navigation, route}) {
           style={{
             flexDirection: 'row',
           }}>
-          <View>
-            <View
-              style={{
-                borderWidth: 2,
-                borderColor: colors.primary,
-
-                // backgroundColor: colors.secondary,
-                width: 120,
-                height: 120,
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderRadius: 10,
-                overflow: 'hidden',
-              }}>
-              <Image
-                source={{
-                  uri:
-                    data.foto == null
-                      ? 'https://zavalabs.com/nogambar.jpg'
-                      : data.foto,
-                }}
-                style={{width: 120, height: 120}}
-              />
-            </View>
-            <MyGap jarak={5} />
-            <MyButton
-              title="Ganti Foto"
-              Icons="cloud-upload-outline"
-              iconColor={colors.black}
-              colorText={colors.black}
-              // warna={colors.secondary}
-              onPress={() => getGallery(1)}
-            />
-          </View>
           <View
             style={{
               flex: 1,
@@ -175,6 +143,18 @@ export default function EditProfile({navigation, route}) {
             />
           </View>
         </View>
+        <MyGap jarak={10} />
+        <MyInput
+          label="NIP"
+          iconname="card-outline"
+          value={data.nip}
+          onChangeText={value =>
+            setData({
+              ...data,
+              nip: value,
+            })
+          }
+        />
 
         <MyGap jarak={20} />
         <MyInput
@@ -204,26 +184,14 @@ export default function EditProfile({navigation, route}) {
 
         <MyGap jarak={10} />
         <MyInput
-          label="NPM / NIP"
-          iconname="map-outline"
-          value={data.nik}
-          onChangeText={value =>
-            setData({
-              ...data,
-              nik: value,
-            })
-          }
-        />
-        <MyGap jarak={10} />
-        <MyInput
           label="Telepon"
           iconname="call-outline"
           keyboardType="number-pad"
-          value={data.tlp}
+          value={data.telepon}
           onChangeText={value =>
             setData({
               ...data,
-              tlp: value,
+              telepon: value,
             })
           }
         />

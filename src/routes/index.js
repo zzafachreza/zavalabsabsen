@@ -47,6 +47,7 @@ import {
   Pinjam,
   ListData2,
   Jadwal,
+  SuratIzin,
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomNavigator} from '../components';
@@ -125,13 +126,13 @@ export default function Router() {
         }}
       />
 
-      <Stack.Screen
+      {/* <Stack.Screen
         name="ListData"
         component={ListData}
         options={{
           headerShown: false,
         }}
-      />
+      /> */}
       <Stack.Screen
         name="Pemakaian"
         component={Pemakaian}
@@ -539,8 +540,37 @@ export default function Router() {
         options={({route, navigation}) => ({
           title: 'Pilih Absensi Masuk Atau Keluar',
           headerTintColor: 'white',
+          headerShown: false,
           headerStyle: {
             backgroundColor: colors.primary,
+            elevation: 0, // remove shadow on Android
+          },
+          cardStyleInterpolator: ({current, layouts}) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateX: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.width, 0],
+                    }),
+                  },
+                ],
+              },
+            };
+          },
+        })}
+      />
+
+      <Stack.Screen
+        name="SuratIzin"
+        component={SuratIzin}
+        options={({route, navigation}) => ({
+          title: 'Pengajuan Surat Izin / Sakit / Cuti',
+          headerTintColor: colors.black,
+          // headerShown: false,
+          headerStyle: {
+            backgroundColor: colors.tertiary,
             elevation: 0, // remove shadow on Android
           },
           cardStyleInterpolator: ({current, layouts}) => {
@@ -565,9 +595,9 @@ export default function Router() {
         component={EditProfile}
         options={({route, navigation}) => ({
           title: 'Edit Profile',
-          headerTintColor: 'white',
+          headerTintColor: 'black',
           headerStyle: {
-            backgroundColor: colors.primary,
+            backgroundColor: colors.tertiary,
             elevation: 0, // remove shadow on Android
           },
           cardStyleInterpolator: ({current, layouts}) => {
@@ -613,15 +643,40 @@ export default function Router() {
           },
         })}
       />
-
+      <Stack.Screen
+        name="ListData"
+        component={ListData}
+        options={({route, navigation}) => ({
+          title: 'HISTORY ABSENSI',
+          headerTintColor: colors.black,
+          headerStyle: {
+            backgroundColor: colors.tertiary,
+            elevation: 0, // remove shadow on Android
+          },
+          cardStyleInterpolator: ({current, layouts}) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateX: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.width, 0],
+                    }),
+                  },
+                ],
+              },
+            };
+          },
+        })}
+      />
       <Stack.Screen
         name="ListData2"
         component={ListData2}
         options={({route, navigation}) => ({
-          title: 'LOGBOOK ALAT',
-          headerTintColor: 'white',
+          title: 'HISTORY IZIN / SAKIT / CUTI',
+          headerTintColor: colors.black,
           headerStyle: {
-            backgroundColor: colors.primary,
+            backgroundColor: colors.tertiary,
             elevation: 0, // remove shadow on Android
           },
           cardStyleInterpolator: ({current, layouts}) => {

@@ -60,7 +60,7 @@ export default function Akses({navigation}) {
             color: colors.white,
             fontSize: windowWidth / 15,
           }}>
-          ABSEN KELUAR
+          ABSEN PULANG
         </Text>
       </TouchableOpacity>
     </View>
