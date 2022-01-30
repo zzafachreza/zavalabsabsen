@@ -56,7 +56,7 @@ export default function Login({navigation}) {
       console.log(data);
       setTimeout(() => {
         axios
-          .post('https://zavalabs.com/tubaba/api/login.php', data)
+          .post('https://absen.zavalabs.com/api/login.php', data)
           .then(res => {
             console.log(res.data);
             setLoading(false);
@@ -68,7 +68,7 @@ export default function Login({navigation}) {
             } else {
               storeData('user', res.data);
               axios
-                .post('https://zavalabs.com/tubaba/api/update_token.php', {
+                .post('https://absen.zavalabs.com/api/update_token.php', {
                   id_member: res.data.id,
                   token: token,
                 })
@@ -83,9 +83,7 @@ export default function Login({navigation}) {
     }
   };
   return (
-    <ImageBackground
-      source={require('../../assets/back.jpeg')}
-      style={styles.page}>
+    <ImageBackground style={styles.page}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={{
@@ -106,7 +104,7 @@ export default function Login({navigation}) {
             source={require('../../assets/logo.png')}
             style={{
               resizeMode: 'contain',
-              aspectRatio: 0.3,
+              aspectRatio: 0.8,
             }}
           />
         </View>
@@ -173,6 +171,7 @@ export default function Login({navigation}) {
 const styles = StyleSheet.create({
   page: {
     flex: 1,
+    backgroundColor: colors.white,
     padding: 10,
   },
   image: {

@@ -86,7 +86,7 @@ export default function Register({navigation}) {
       setLoading(true);
       console.log(data);
       axios
-        .post('https://zavalabs.com/tubaba/api/register.php', data)
+        .post('https://absen.zavalabs.com/api/register.php', data)
         .then(res => {
           console.log(res);
           let err = res.data.split('#');

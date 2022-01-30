@@ -37,7 +37,7 @@ export default function ({navigation, route}) {
   const getDataBarang = () => {
     getData('user').then(res => {
       axios
-        .post('https://zavalabs.com/tubaba/api/absen.php', {
+        .post('https://absen.zavalabs.com/api/absen.php', {
           id_user: res.id,
         })
         .then(x => {

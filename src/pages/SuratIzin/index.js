@@ -201,7 +201,7 @@ export default function SuratIzin({navigation}) {
     setLoading(true);
 
     axios
-      .post('https://zavalabs.com/tubaba/api/absen_izin_add.php', data)
+      .post('https://absen.zavalabs.com/api/absen_izin_add.php', data)
       .then(x => {
         setLoading(false);
         alert('Surat Izin Berhasil Di Kirim');

@@ -42,7 +42,7 @@ export default function Account({navigation, route}) {
   const btnKeluar = () => {
     storeData('user', null);
 
-    navigation.replace('GetStarted');
+    navigation.replace('Login');
   };
 
   const kirimWa = x => {

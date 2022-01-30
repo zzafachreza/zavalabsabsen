@@ -45,6 +45,7 @@ export default function Masuk({navigation, route}) {
     includeBase64: true,
     quality: 0.5,
     maxWidth: 300,
+    maxHeight: 300,
   };
 
   const getCamera = xyz => {
@@ -108,15 +109,15 @@ export default function Masuk({navigation, route}) {
   }, []);
 
   const simpan = () => {
-    // setLoading(true);
+    setLoading(true);
     // alert(kirim.suhu.length);
     console.log('kirim ke server', kirim);
 
     axios
-      .post('https://zavalabs.com/tubaba/api/absen_add.php', kirim)
+      .post('https://absen.zavalabs.com/api/absen_add.php', kirim)
       .then(x => {
         setLoading(false);
-        alert('Absensi Masuk Berhasil Di Kirim');
+        alert('Absensi Pulang Berhasil Di Kirim');
         console.log('respose server', x);
         navigation.navigate('MainApp');
       });

@@ -102,21 +102,19 @@ export default function EditProfile({navigation, route}) {
   const simpan = () => {
     setLoading(true);
     console.log('kirim edit', data);
-    axios
-      .post('https://zavalabs.com/tubaba/api/profile.php', data)
-      .then(res => {
-        console.log(res);
-        storeData('user', res.data);
-        setLoading(false);
-        showMessage({
-          type: 'success',
-          message: 'Data bershasil diupdate..',
-        });
-
-        navigation.replace('MainApp');
-
-        // console.log(err[0]);
+    axios.post('https://absen.zavalabs.com/api/profile.php', data).then(res => {
+      console.log(res);
+      storeData('user', res.data);
+      setLoading(false);
+      showMessage({
+        type: 'success',
+        message: 'Data bershasil diupdate..',
       });
+
+      navigation.replace('MainApp');
+
+      // console.log(err[0]);
+    });
   };
   return (
     <SafeAreaView style={styles.page}>

@@ -79,7 +79,7 @@ export default function Home({navigation}) {
       setUser(res);
 
       axios
-        .post('https://zavalabs.com/tubaba/api/point.php', {
+        .post('https://absen.zavalabs.com/api/point.php', {
           id_member: res.id,
         })
         .then(respoint => {
@@ -94,7 +94,7 @@ export default function Home({navigation}) {
     });
 
     axios
-      .post('https://zavalabs.com/tubaba/api/update_token.php', {
+      .post('https://absen.zavalabs.com/api/update_token.php', {
         id_member: user.id,
         token: token,
       })
@@ -119,16 +119,22 @@ export default function Home({navigation}) {
     );
   };
 
-  const DataKategori = ({icon, nama, nama2, onPress}) => {
+  const DataKategori = ({
+    icon,
+    nama,
+    nama2,
+    onPress,
+    warna = colors.primary,
+  }) => {
     return (
       <TouchableOpacity
         onPress={onPress}
         style={{
-          backgroundColor: colors.primary,
+          backgroundColor: warna,
           padding: 5,
           borderRadius: 10,
-          width: windowWidth / 3.5,
-          height: windowHeight / 6,
+          width: windowWidth / 2.5,
+          height: windowHeight / 5,
           elevation: 5,
           justifyContent: 'center',
         }}>
@@ -137,7 +143,7 @@ export default function Home({navigation}) {
             type="ionicon"
             name={icon}
             color={colors.white}
-            size={windowWidth / 10}
+            size={windowWidth / 5}
           />
         </View>
         <View>
@@ -145,7 +151,7 @@ export default function Home({navigation}) {
             style={{
               fontFamily: fonts.secondary[600],
               color: colors.white,
-              fontSize: windowWidth / 40,
+              fontSize: windowWidth / 30,
               textAlign: 'center',
               // marginHorizontal: 10,
             }}>
@@ -155,7 +161,7 @@ export default function Home({navigation}) {
             style={{
               fontFamily: fonts.secondary[600],
               color: colors.white,
-              fontSize: windowWidth / 40,
+              fontSize: windowWidth / 30,
               textAlign: 'center',
               // marginHorizontal: 10,
             }}>
@@ -184,21 +190,20 @@ export default function Home({navigation}) {
 
         <View
           style={{
-            marginHorizontal: 10,
             height: windowHeight / 9,
             padding: 10,
             marginBottom: 20,
-            // backgroundColor: colors.white,
+            backgroundColor: colors.primary,
             flexDirection: 'row',
             // borderBottomLeftRadius: 10,
             // borderBottomRightRadius: 10,
           }}>
-          <View style={{flex: 1, paddingTop: 15, flexDirection: 'row'}}>
+          <View style={{flex: 1, paddingTop: 10, flexDirection: 'row'}}>
             <View style={{paddingLeft: 10}}>
               <Text
                 style={{
                   fontSize: windowWidth / 30,
-                  color: colors.black,
+                  color: colors.white,
                   fontFamily: fonts.secondary[400],
                 }}>
                 Selamat datang,
@@ -206,7 +211,7 @@ export default function Home({navigation}) {
               <Text
                 style={{
                   fontSize: windowWidth / 25,
-                  color: colors.black,
+                  color: colors.white,
                   fontFamily: fonts.secondary[600],
                 }}>
                 {user.nama_lengkap}
@@ -214,7 +219,7 @@ export default function Home({navigation}) {
               <Text
                 style={{
                   fontSize: windowWidth / 25,
-                  color: colors.secondary,
+                  color: colors.white,
                   fontFamily: fonts.secondary[600],
                 }}>
                 {user.divisi} - {user.jabatan}
@@ -247,15 +252,17 @@ export default function Home({navigation}) {
             style={{
               flexDirection: 'row',
               justifyContent: 'space-around',
-              marginTop: 15,
+              marginTop: 0,
             }}>
             <DataKategori
+              warna={colors.primary}
               onPress={() => navigation.navigate('Akses')}
               icon="camera-outline"
               nama="ABSEN"
               nama2="ONLINE"
             />
             <DataKategori
+              warna="#25DBDB"
               onPress={() => navigation.navigate('SuratIzin')}
               icon="warning-outline"
               nama="PENGAJUAN"
@@ -270,12 +277,14 @@ export default function Home({navigation}) {
               marginTop: 15,
             }}>
             <DataKategori
+              warna="#FDC24F"
               onPress={() => navigation.navigate('ListData')}
               icon="book-outline"
               nama="HISTORY"
               nama2="ABSENSI"
             />
             <DataKategori
+              warna="#E00F0F"
               onPress={() => navigation.navigate('ListData2')}
               icon="list-outline"
               nama="HISTORY"

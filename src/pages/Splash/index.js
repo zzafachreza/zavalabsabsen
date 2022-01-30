@@ -62,7 +62,7 @@ export default function Splash({navigation}) {
         // console.log('beum login');
 
         setTimeout(() => {
-          navigation.replace('GetStarted');
+          navigation.replace('Login');
         }, 1500);
       } else {
         console.log('sudah login logon');
@@ -79,7 +79,7 @@ export default function Splash({navigation}) {
       <View
         style={{
           flex: 1,
-          backgroundColor: colors.white,
+          backgroundColor: colors.primary,
           justifyContent: 'center',
         }}>
         <View
@@ -95,7 +95,7 @@ export default function Splash({navigation}) {
               resizeMode: 'contain',
               // resizeMode: 'center',
 
-              height: 250,
+              height: 200,
               aspectRatio: scaleLogo,
             }}
           />
@@ -107,21 +107,21 @@ export default function Splash({navigation}) {
           }}>
           <Text
             style={{
-              fontFamily: fonts.secondary[600],
-              fontSize: windowWidth / 15,
-              color: colors.black,
+              fontFamily: fonts.secondary[800],
+              fontSize: windowWidth / 9,
+              color: colors.white,
               textAlign: 'center',
             }}>
-            Bagian Umum Pemerintah
+            Z - ABSEN
           </Text>
           <Text
             style={{
               fontFamily: fonts.secondary[600],
-              fontSize: windowWidth / 12,
-              color: colors.primary,
+              fontSize: windowWidth / 20,
+              color: colors.white,
               textAlign: 'center',
             }}>
-            Kabupaten Tulang Bawang Barat
+            By ZAVALABS Mobile Apps
           </Text>
         </Animated.View>
       </View>
@@ -131,9 +131,7 @@ export default function Splash({navigation}) {
 
 const styles = StyleSheet.create({
   page: {
-    backgroundColor: colors.tertiary,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: colors.primary,
     flex: 1,
   },
   image: {
