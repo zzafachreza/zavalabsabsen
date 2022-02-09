@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,17 +10,17 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import {storeData, getData} from '../../utils/localStorage';
+import { storeData, getData } from '../../utils/localStorage';
 import axios from 'axios';
-import {colors} from '../../utils/colors';
-import {windowWidth, fonts} from '../../utils/fonts';
+import { colors } from '../../utils/colors';
+import { windowWidth, fonts } from '../../utils/fonts';
 
 const wait = timeout => {
   return new Promise(resolve => {
     setTimeout(resolve, timeout);
   });
 };
-export default function ({navigation, route}) {
+export default function ({ navigation, route }) {
   const [refreshing, setRefreshing] = React.useState(false);
   const [data, setData] = useState([]);
 
@@ -47,7 +47,7 @@ export default function ({navigation, route}) {
     });
   };
 
-  const renderItem = ({item}) => (
+  const renderItem = ({ item }) => (
     <TouchableOpacity
       style={{
         padding: 10,
@@ -55,7 +55,7 @@ export default function ({navigation, route}) {
         backgroundColor: 'white',
         elevation: 1,
       }}>
-      <View style={{flexDirection: 'row', padding: 10}}>
+      <View style={{ flexDirection: 'row', padding: 10 }}>
         <Text
           style={{
             flex: 1,
@@ -105,14 +105,16 @@ export default function ({navigation, route}) {
             {item.jam_masuk}
           </Text>
         </View>
-        <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
+        <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
           <Text
             style={{
               fontSize: windowWidth / 30,
               textAlign: 'center',
-              color: colors.primary,
+              backgroundColor: item.tipe == "KANTOR" ? colors.primary : colors.zavalabs2,
+              color: colors.white,
+              paddingHorizontal: 10,
             }}>
-            Lama Bekerja
+            LAMA DI {item.tipe}
           </Text>
           <Text
             style={{

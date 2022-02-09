@@ -37,6 +37,7 @@ import Pinjam from './Pinjam';
 import ListData2 from './ListData2';
 import Jadwal from './Jadwal';
 import SuratIzin from './SuratIzin';
+import Jenis from './Jenis';
 
 export {
   Splash,
@@ -47,6 +48,7 @@ export {
   Pilihan,
   ProfileLab,
   EditProfile,
+  Jenis,
   Wa,
   Masuk,
   Keluar,

@@ -1,15 +1,15 @@
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, SafeAreaView, ScrollView} from 'react-native';
-import {MyPicker, MyGap, MyInput, MyButton} from '../../components';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, SafeAreaView, ScrollView } from 'react-native';
+import { MyPicker, MyGap, MyInput, MyButton } from '../../components';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-import {colors} from '../../utils/colors';
-import {fonts} from '../../utils/fonts';
-import {Image} from 'react-native';
-import {getData} from '../../utils/localStorage';
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import { colors } from '../../utils/colors';
+import { fonts } from '../../utils/fonts';
+import { Image } from 'react-native';
+import { getData } from '../../utils/localStorage';
 import axios from 'axios';
 import LottieView from 'lottie-react-native';
-export default function SuratIzin({navigation}) {
+export default function SuratIzin({ navigation }) {
   const [data, setData] = useState({
     tipe: 'SAKIT',
     tanggal: '',
@@ -80,7 +80,7 @@ export default function SuratIzin({navigation}) {
       } else if (response.error) {
         console.log('Image Picker Error: ', response.error);
       } else {
-        let source = {uri: response.uri};
+        let source = { uri: response.uri };
         switch (xyz) {
           case 1:
             setData({
@@ -102,7 +102,7 @@ export default function SuratIzin({navigation}) {
       } else if (response.error) {
         console.log('Image Picker Error: ', response.error);
       } else {
-        let source = {uri: response.uri};
+        let source = { uri: response.uri };
         switch (xyz) {
           case 1:
             setData({
@@ -116,7 +116,7 @@ export default function SuratIzin({navigation}) {
     });
   };
 
-  const UploadFoto = ({onPress1, onPress2, label, foto}) => {
+  const UploadFoto = ({ onPress1, onPress2, label, foto }) => {
     return (
       <View
         style={{
@@ -210,7 +210,7 @@ export default function SuratIzin({navigation}) {
       });
   };
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       <ScrollView
         style={{
           padding: 10,
@@ -311,6 +311,7 @@ export default function SuratIzin({navigation}) {
           warna={colors.tertiary}
           colorText={colors.black}
         />
+        <MyGap jarak={20} />
       </ScrollView>
       {loading && (
         <LottieView

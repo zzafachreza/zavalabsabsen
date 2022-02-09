@@ -1,10 +1,10 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {Icon} from 'react-native-elements';
-import {colors} from '../../utils/colors';
-import {windowWidth, fonts} from '../../utils/fonts';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Icon } from 'react-native-elements';
+import { colors } from '../../utils/colors';
+import { windowWidth, fonts } from '../../utils/fonts';
 
-export default function Akses({navigation}) {
+export default function Akses({ navigation, route }) {
   return (
     <View
       style={{
@@ -12,7 +12,9 @@ export default function Akses({navigation}) {
         padding: 10,
       }}>
       <TouchableOpacity
-        onPress={() => navigation.navigate('Masuk')}
+        onPress={() => navigation.navigate('Masuk', {
+          jenis: route.params.jenis
+        })}
         style={{
           flex: 1,
           backgroundColor: colors.secondary,
@@ -36,9 +38,19 @@ export default function Akses({navigation}) {
           }}>
           ABSEN MASUK
         </Text>
+        <Text
+          style={{
+            fontFamily: fonts.secondary[600],
+            color: colors.white,
+            fontSize: windowWidth / 15,
+          }}>
+          {route.params.jenis}
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigation.navigate('Keluar')}
+        onPress={() => navigation.navigate('Keluar', {
+          jenis: route.params.jenis
+        })}
         style={{
           flex: 1,
           backgroundColor: colors.primary,
@@ -61,6 +73,14 @@ export default function Akses({navigation}) {
             fontSize: windowWidth / 15,
           }}>
           ABSEN PULANG
+        </Text>
+        <Text
+          style={{
+            fontFamily: fonts.secondary[600],
+            color: colors.white,
+            fontSize: windowWidth / 15,
+          }}>
+          {route.params.jenis}
         </Text>
       </TouchableOpacity>
     </View>

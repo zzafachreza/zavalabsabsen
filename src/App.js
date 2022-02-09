@@ -1,13 +1,13 @@
 import 'react-native-gesture-handler';
-import React, {useEffect} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import React, { useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import Router from './routes';
-import {LogBox, StatusBar} from 'react-native';
+import { LogBox, StatusBar } from 'react-native';
 import FlashMessage from 'react-native-flash-message';
-import {colors} from './utils/colors';
+import { colors } from './utils/colors';
 
 import PushNotification from 'react-native-push-notification';
-import {storeData} from './utils/localStorage';
+import { storeData } from './utils/localStorage';
 
 export default function App() {
   LogBox.ignoreAllLogs();
@@ -82,7 +82,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <StatusBar backgroundColor={colors.primary} barStyle="dark-content" />
+      <StatusBar backgroundColor={colors.primary} barStyle="light-content" />
       <Router />
       <FlashMessage position="bottom" />
     </NavigationContainer>

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,7 +7,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import {
   Splash,
   GetStarted,
@@ -48,10 +48,11 @@ import {
   ListData2,
   Jadwal,
   SuratIzin,
+  Jenis,
 } from '../pages';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {BottomNavigator} from '../components';
-import {colors} from '../utils/colors';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { BottomNavigator } from '../components';
+import { colors } from '../utils/colors';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -178,7 +179,7 @@ export default function Router() {
           headerTitle: 'Login',
           headerShown: false,
 
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [
@@ -204,7 +205,7 @@ export default function Router() {
             backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [
@@ -239,14 +240,14 @@ export default function Router() {
       <Stack.Screen
         name="Search2"
         component={Search2}
-        options={({route, navigation}) => ({
+        options={({ route, navigation }) => ({
           title: 'Layanan',
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [
@@ -266,14 +267,14 @@ export default function Router() {
       <Stack.Screen
         name="ProfileLab"
         component={ProfileLab}
-        options={({route, navigation}) => ({
+        options={({ route, navigation }) => ({
           title: 'Profile Lab',
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [
@@ -293,14 +294,14 @@ export default function Router() {
       <Stack.Screen
         name="Hadiah"
         component={Hadiah}
-        options={({route, navigation}) => ({
+        options={({ route, navigation }) => ({
           title: 'Daftar Hadiah',
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [
@@ -320,14 +321,14 @@ export default function Router() {
       <Stack.Screen
         name="Redeem"
         component={Redeem}
-        options={({route, navigation}) => ({
+        options={({ route, navigation }) => ({
           title: 'Redeem Point',
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [
@@ -347,14 +348,14 @@ export default function Router() {
       <Stack.Screen
         name="Kategori"
         component={Kategori}
-        options={({route, navigation}) => ({
+        options={({ route, navigation }) => ({
           title: 'Detail Pembantu',
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [
@@ -374,14 +375,14 @@ export default function Router() {
       <Stack.Screen
         name="Cart"
         component={Cart}
-        options={({route, navigation}) => ({
+        options={({ route, navigation }) => ({
           title: 'Keranjang',
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [
@@ -401,14 +402,14 @@ export default function Router() {
       <Stack.Screen
         name="Checkout"
         component={Checkout}
-        options={({route, navigation}) => ({
+        options={({ route, navigation }) => ({
           title: 'Checkout',
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [
@@ -428,14 +429,14 @@ export default function Router() {
       <Stack.Screen
         name="Bayar"
         component={Bayar}
-        options={({route, navigation}) => ({
+        options={({ route, navigation }) => ({
           title: 'PEMBAYARAN VIA TRANSFER',
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [
@@ -455,14 +456,14 @@ export default function Router() {
       <Stack.Screen
         name="Bayar2"
         component={Bayar2}
-        options={({route, navigation}) => ({
+        options={({ route, navigation }) => ({
           title: 'PEMBAYARAN VIA COD',
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [
@@ -482,7 +483,7 @@ export default function Router() {
       <Stack.Screen
         name="Barang"
         component={Barang}
-        options={({route, navigation}) => ({
+        options={({ route, navigation }) => ({
           title: 'Detail Barang',
           headerShown: false,
           headerTintColor: 'white',
@@ -490,7 +491,7 @@ export default function Router() {
             backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [
@@ -510,14 +511,14 @@ export default function Router() {
       <Stack.Screen
         name="BarangPemakaian"
         component={BarangPemakaian}
-        options={({route, navigation}) => ({
+        options={({ route, navigation }) => ({
           title: 'Detail Barang',
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [
@@ -537,7 +538,7 @@ export default function Router() {
       <Stack.Screen
         name="Akses"
         component={Akses}
-        options={({route, navigation}) => ({
+        options={({ route, navigation }) => ({
           title: 'Pilih Absensi Masuk Atau Keluar',
           headerTintColor: 'white',
           headerShown: false,
@@ -545,7 +546,36 @@ export default function Router() {
             backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateX: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.width, 0],
+                    }),
+                  },
+                ],
+              },
+            };
+          },
+        })}
+      />
+
+
+      <Stack.Screen
+        name="Jenis"
+        component={Jenis}
+        options={({ route, navigation }) => ({
+          title: 'Pilih Jenis Abesen',
+          headerTintColor: 'white',
+          headerShown: false,
+          headerStyle: {
+            backgroundColor: colors.primary,
+            elevation: 0, // remove shadow on Android
+          },
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [
@@ -565,15 +595,15 @@ export default function Router() {
       <Stack.Screen
         name="SuratIzin"
         component={SuratIzin}
-        options={({route, navigation}) => ({
+        options={({ route, navigation }) => ({
           title: 'Pengajuan Surat Izin / Sakit / Cuti',
-          headerTintColor: colors.black,
+          headerTintColor: colors.white,
           // headerShown: false,
           headerStyle: {
-            backgroundColor: colors.tertiary,
+            backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [
@@ -593,14 +623,14 @@ export default function Router() {
       <Stack.Screen
         name="EditProfile"
         component={EditProfile}
-        options={({route, navigation}) => ({
+        options={({ route, navigation }) => ({
           title: 'Edit Profile',
-          headerTintColor: 'black',
+          headerTintColor: colors.white,
           headerStyle: {
-            backgroundColor: colors.tertiary,
+            backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [
@@ -620,14 +650,14 @@ export default function Router() {
       <Stack.Screen
         name="Pinjam"
         component={Pinjam}
-        options={({route, navigation}) => ({
+        options={({ route, navigation }) => ({
           title: 'Pinjam Alat & Bahan',
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [
@@ -646,14 +676,14 @@ export default function Router() {
       <Stack.Screen
         name="ListData"
         component={ListData}
-        options={({route, navigation}) => ({
+        options={({ route, navigation }) => ({
           title: 'HISTORY ABSENSI',
-          headerTintColor: colors.black,
+          headerTintColor: colors.white,
           headerStyle: {
-            backgroundColor: colors.tertiary,
+            backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [
@@ -672,14 +702,14 @@ export default function Router() {
       <Stack.Screen
         name="ListData2"
         component={ListData2}
-        options={({route, navigation}) => ({
+        options={({ route, navigation }) => ({
           title: 'HISTORY IZIN / SAKIT / CUTI',
-          headerTintColor: colors.black,
+          headerTintColor: colors.white,
           headerStyle: {
-            backgroundColor: colors.tertiary,
+            backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [
@@ -699,14 +729,14 @@ export default function Router() {
       <Stack.Screen
         name="Jadwal"
         component={Jadwal}
-        options={({route, navigation}) => ({
+        options={({ route, navigation }) => ({
           title: 'PENJADWALAN PENGGUNAAN LAB',
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [
@@ -726,14 +756,14 @@ export default function Router() {
       <Stack.Screen
         name="Tambah"
         component={Tambah}
-        options={({route, navigation}) => ({
+        options={({ route, navigation }) => ({
           title: 'TAMBAH',
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [
@@ -753,14 +783,14 @@ export default function Router() {
       <Stack.Screen
         name="ListDetail"
         component={ListDetail}
-        options={({route, navigation}) => ({
+        options={({ route, navigation }) => ({
           title: 'LIST DETAIL',
           headerTintColor: 'white',
           headerStyle: {
             backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
-          cardStyleInterpolator: ({current, layouts}) => {
+          cardStyleInterpolator: ({ current, layouts }) => {
             return {
               cardStyle: {
                 transform: [

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -13,10 +13,10 @@ import {
   Linking,
   StatusBar,
 } from 'react-native';
-import {colors} from '../../utils/colors';
-import {fonts} from '../../utils/fonts';
-import {storeData, getData} from '../../utils/localStorage';
-import {Icon} from 'react-native-elements';
+import { colors } from '../../utils/colors';
+import { fonts } from '../../utils/fonts';
+import { storeData, getData } from '../../utils/localStorage';
+import { Icon } from 'react-native-elements';
 import MyCarouser from '../../components/MyCarouser';
 import MyTerbaik from '../../components/MyTerbaik';
 import axios from 'axios';
@@ -27,7 +27,7 @@ import MyTerbaik2 from '../../components/MyTerbaik2';
 import MyTerbaik3 from '../../components/MyTerbaik3';
 import MyDashboard from '../../components/MyDashboard';
 
-export default function Home({navigation}) {
+export default function Home({ navigation }) {
   const [user, setUser] = useState([]);
   const [token, setToken] = useState('');
   const [tipe, setTipe] = useState('');
@@ -106,11 +106,11 @@ export default function Home({navigation}) {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   const ratio = 192 / 108;
-  const _renderItem = ({item, index}) => {
+  const _renderItem = ({ item, index }) => {
     return (
       <Image
         resizeMode="contain"
-        source={{uri: item.image}}
+        source={{ uri: item.image }}
         style={{
           width: windowWidth,
           height: Math.round((windowWidth * 9) / 16),
@@ -198,8 +198,8 @@ export default function Home({navigation}) {
             // borderBottomLeftRadius: 10,
             // borderBottomRightRadius: 10,
           }}>
-          <View style={{flex: 1, paddingTop: 10, flexDirection: 'row'}}>
-            <View style={{paddingLeft: 10}}>
+          <View style={{ flex: 1, paddingTop: 10, flexDirection: 'row' }}>
+            <View style={{ paddingLeft: 10 }}>
               <Text
                 style={{
                   fontSize: windowWidth / 30,
@@ -234,7 +234,7 @@ export default function Home({navigation}) {
             }}>
             <Image
               source={require('../../assets/logo.png')}
-              style={{width: 50, resizeMode: 'contain'}}
+              style={{ width: 50, resizeMode: 'contain' }}
             />
           </View>
         </View>
@@ -256,7 +256,7 @@ export default function Home({navigation}) {
             }}>
             <DataKategori
               warna={colors.primary}
-              onPress={() => navigation.navigate('Akses')}
+              onPress={() => navigation.navigate('Jenis')}
               icon="camera-outline"
               nama="ABSEN"
               nama2="ONLINE"
