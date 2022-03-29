@@ -7,10 +7,10 @@ import {
   Linking,
   Dimensions,
 } from 'react-native';
-import {Icon} from 'react-native-elements';
-import {colors} from '../../utils/colors';
+import { Icon } from 'react-native-elements';
+import { colors } from '../../utils/colors';
 
-export default function BottomNavigator({state, descriptors, navigation}) {
+export default function BottomNavigator({ state, descriptors, navigation }) {
   const focusedOptions = descriptors[state.routes[state.index].key].options;
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
@@ -19,15 +19,15 @@ export default function BottomNavigator({state, descriptors, navigation}) {
   }
 
   return (
-    <View style={{backgroundColor: colors.primary, flexDirection: 'row'}}>
+    <View style={{ backgroundColor: colors.primary, flexDirection: 'row' }}>
       {state.routes.map((route, index) => {
-        const {options} = descriptors[route.key];
+        const { options } = descriptors[route.key];
         const label =
           options.tabBarLabel !== undefined
             ? options.tabBarLabel
             : options.title !== undefined
-            ? options.title
-            : route.name;
+              ? options.title
+              : route.name;
 
         const isFocused = state.index === index;
 
@@ -58,8 +58,8 @@ export default function BottomNavigator({state, descriptors, navigation}) {
           iconName = 'person-outline';
         } else if (label === 'Laporan') {
           iconName = 'grid-outline';
-        } else if (label === 'ChatWa') {
-          iconName = 'chatbubbles-outline';
+        } else if (label === 'Asset') {
+          iconName = 'file-tray-stacked-outline';
         } else if (label === 'Cart') {
           iconName = 'cart';
         } else if (label === 'Pesanan') {
@@ -76,13 +76,13 @@ export default function BottomNavigator({state, descriptors, navigation}) {
             onPress={
               label === 'Chat'
                 ? () =>
-                    Linking.openURL(
-                      'https://api.whatsapp.com/send?phone=6289653763986',
-                    )
+                  Linking.openURL(
+                    'https://api.whatsapp.com/send?phone=6289653763986',
+                  )
                 : onPress
             }
             onLongPress={onLongPress}
-            style={{flex: 1}}>
+            style={{ flex: 1 }}>
             <View
               style={{
                 color: isFocused ? colors.white : '#919095',

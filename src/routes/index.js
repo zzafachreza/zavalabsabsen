@@ -49,6 +49,7 @@ import {
   Jadwal,
   SuratIzin,
   Jenis,
+  Asset,
 } from '../pages';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BottomNavigator } from '../components';
@@ -61,7 +62,7 @@ const MainApp = () => {
   return (
     <Tab.Navigator tabBar={props => <BottomNavigator {...props} />}>
       <Tab.Screen name="Home" component={Home} />
-      {/* <Tab.Screen name="History" component={ListData} /> */}
+      <Tab.Screen name="Asset" component={Asset} />
       {/* <Tab.Screen name="ListRedeem" component={ListRedeem} />
       <Tab.Screen name="Cart" component={Cart} />  */}
       {/* <Tab.Screen name="Notifikasi" component={Notifikasi} /> */}

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,13 +8,13 @@ import {
   TouchableNativeFeedback,
   Image,
 } from 'react-native';
-import Carousel, {Pagination} from 'react-native-snap-carousel';
-import {colors} from '../../utils/colors';
+import Carousel, { Pagination } from 'react-native-snap-carousel';
+import { colors } from '../../utils/colors';
 import axios from 'axios';
-import {useNavigation} from '@react-navigation/native';
-import {fonts} from '../../utils/fonts';
-import {Icon} from 'react-native-elements';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
+import { fonts } from '../../utils/fonts';
+import { Icon } from 'react-native-elements';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function MyCarouser() {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -31,9 +31,9 @@ export default function MyCarouser() {
 
   const [data, setData] = useState([]);
 
-  const renderCarouselItem = ({item}) => (
+  const renderCarouselItem = ({ item }) => (
     <Image
-      source={{uri: item.image}}
+      source={{ uri: item.image }}
       style={{
         resizeMode: 'cover',
         height: 180,

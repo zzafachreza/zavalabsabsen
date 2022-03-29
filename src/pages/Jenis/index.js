@@ -17,7 +17,7 @@ export default function ({ navigation }) {
                 })}
                 style={{
                     flex: 1,
-                    backgroundColor: colors.zavalabs,
+                    backgroundColor: colors.primary,
                     padding: 10,
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -45,7 +45,7 @@ export default function ({ navigation }) {
                 })}
                 style={{
                     flex: 1,
-                    backgroundColor: colors.zavalabs2,
+                    backgroundColor: colors.primary,
                     padding: 10,
                     justifyContent: 'center',
                     alignItems: 'center',

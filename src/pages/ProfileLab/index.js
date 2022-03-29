@@ -7,12 +7,12 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
-import {fonts, windowWidth} from '../../utils/fonts';
-import {colors} from '../../utils/colors';
+import { fonts, windowWidth } from '../../utils/fonts';
+import { colors } from '../../utils/colors';
 
 export default function ProfileLab() {
   return (
-    <SafeAreaView style={{flex: 1, paddingHorizontal: 10}}>
+    <SafeAreaView style={{ flex: 1, paddingHorizontal: 10 }}>
       <ScrollView showsVerticalScrollIndicator={false} style={{}}>
         <Text style={styles.judul}>Lab. Keteknikan Pangaan</Text>
         <Text style={styles.isi}>
@@ -43,10 +43,6 @@ export default function ProfileLab() {
 
         <Text style={styles.isi}>(Foto Terlampir)</Text>
 
-        <Image style={styles.img} source={require('../../assets/ekpp1.jpeg')} />
-        <Image style={styles.img} source={require('../../assets/ekpp2.jpeg')} />
-        <Image style={styles.img} source={require('../../assets/ekpp3.jpeg')} />
-        <Image style={styles.img} source={require('../../assets/ekpp4.jpeg')} />
       </ScrollView>
     </SafeAreaView>
   );

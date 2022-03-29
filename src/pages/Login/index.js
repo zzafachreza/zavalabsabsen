@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,15 +10,15 @@ import {
   ImageBackground,
   SafeAreaView,
 } from 'react-native';
-import {colors} from '../../utils/colors';
-import {fonts} from '../../utils/fonts';
-import {MyInput, MyGap, MyButton} from '../../components';
+import { colors } from '../../utils/colors';
+import { fonts } from '../../utils/fonts';
+import { MyInput, MyGap, MyButton } from '../../components';
 import LottieView from 'lottie-react-native';
 import axios from 'axios';
-import {storeData, getData} from '../../utils/localStorage';
-import {showMessage} from 'react-native-flash-message';
+import { storeData, getData } from '../../utils/localStorage';
+import { showMessage } from 'react-native-flash-message';
 
-export default function Login({navigation}) {
+export default function Login({ navigation }) {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   const [loading, setLoading] = useState(false);
@@ -101,10 +101,10 @@ export default function Login({navigation}) {
             borderRadius: 10,
           }}>
           <Image
-            source={require('../../assets/logo.png')}
+            source={require('../../assets/logo2.png')}
             style={{
-              resizeMode: 'contain',
-              aspectRatio: 0.8,
+              height: 100,
+              width: 350
             }}
           />
         </View>
@@ -161,7 +161,7 @@ export default function Login({navigation}) {
           source={require('../../assets/animation.json')}
           autoPlay
           loop
-          style={{backgroundColor: colors.primary}}
+          style={{ backgroundColor: colors.primary }}
         />
       )}
     </ImageBackground>

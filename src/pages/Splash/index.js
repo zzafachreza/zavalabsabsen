@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,15 +9,15 @@ import {
   Image,
   Animated,
 } from 'react-native';
-import {colors} from '../../utils/colors';
-import {fonts} from '../../utils/fonts';
-import {color, asin} from 'react-native-reanimated';
-import {getData, storeData} from '../../utils/localStorage';
-import {PermissionsAndroid} from 'react-native';
+import { colors } from '../../utils/colors';
+import { fonts } from '../../utils/fonts';
+import { color, asin } from 'react-native-reanimated';
+import { getData, storeData } from '../../utils/localStorage';
+import { PermissionsAndroid } from 'react-native';
 import LottieView from 'lottie-react-native';
 import axios from 'axios';
 
-export default function Splash({navigation}) {
+export default function Splash({ navigation }) {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   const scaleLogo = new Animated.Value(0.1);
@@ -79,7 +79,7 @@ export default function Splash({navigation}) {
       <View
         style={{
           flex: 1,
-          backgroundColor: colors.primary,
+          backgroundColor: colors.white,
           justifyContent: 'center',
         }}>
         <View
@@ -108,17 +108,17 @@ export default function Splash({navigation}) {
           <Text
             style={{
               fontFamily: fonts.secondary[800],
-              fontSize: windowWidth / 9,
-              color: colors.white,
+              fontSize: windowWidth / 8,
+              color: colors.primary,
               textAlign: 'center',
             }}>
             Z - ABSEN
           </Text>
           <Text
             style={{
-              fontFamily: fonts.secondary[600],
-              fontSize: windowWidth / 20,
-              color: colors.white,
+              fontFamily: fonts.tertiary[600],
+              fontSize: windowWidth / 18,
+              color: colors.black,
               textAlign: 'center',
             }}>
             By ZAVALABS Mobile Apps
@@ -131,7 +131,7 @@ export default function Splash({navigation}) {
 
 const styles = StyleSheet.create({
   page: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.white,
     flex: 1,
   },
   image: {

@@ -38,10 +38,13 @@ import ListData2 from './ListData2';
 import Jadwal from './Jadwal';
 import SuratIzin from './SuratIzin';
 import Jenis from './Jenis';
+import Asset from './Asset';
+
 
 export {
   Splash,
   SuratIzin,
+  Asset,
   Jadwal,
   Pinjam,
   ListData2,

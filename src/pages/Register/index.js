@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -11,14 +11,14 @@ import {
   Switch,
   SafeAreaView,
 } from 'react-native';
-import {colors} from '../../utils/colors';
-import {fonts} from '../../utils/fonts';
-import {MyInput, MyGap, MyButton, MyPicker} from '../../components';
+import { colors } from '../../utils/colors';
+import { fonts } from '../../utils/fonts';
+import { MyInput, MyGap, MyButton, MyPicker } from '../../components';
 import axios from 'axios';
-import {showMessage} from 'react-native-flash-message';
+import { showMessage } from 'react-native-flash-message';
 import LottieView from 'lottie-react-native';
 
-export default function Register({navigation}) {
+export default function Register({ navigation }) {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   const [loading, setLoading] = useState(false);
@@ -31,11 +31,11 @@ export default function Register({navigation}) {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (reg.test(text) === false) {
       // console.log('Email is Not Correct');
-      setData({...data, email: text});
+      setData({ ...data, email: text });
       setValid(false);
       return false;
     } else {
-      setData({...data, email: text});
+      setData({ ...data, email: text });
       setValid(true);
       // console.log('Email is Correct');
     }
@@ -88,7 +88,7 @@ export default function Register({navigation}) {
       axios
         .post('https://absen.zavalabs.com/api/register.php', data)
         .then(res => {
-          console.log(res);
+          console.warn(res.data);
           let err = res.data.split('#');
 
           // console.log(err[0]);
@@ -110,6 +110,18 @@ export default function Register({navigation}) {
         });
     }
   };
+
+
+  const [dataCompany, serDataCompany] = useState([]);
+  useEffect(() => {
+
+    axios.post('https://absen.zavalabs.com/api/perusahaan.php').then(res => {
+      serDataCompany(res.data);
+    })
+
+  }, [])
+
+
   return (
     <ImageBackground
       source={require('../../assets/back.jpeg')}
@@ -135,6 +147,17 @@ export default function Register({navigation}) {
           aplikasi
         </Text>
 
+        <MyPicker
+          onValueChange={x =>
+            setData({
+              ...data,
+              fid_company: x,
+            })
+          }
+          iconname="list"
+          label="Pilih Perushaan"
+          data={dataCompany}
+        />
         <MyGap jarak={20} />
         <MyInput
           fontColor={isEnabled ? colors.white : colors.black}

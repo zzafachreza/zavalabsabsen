@@ -211,7 +211,7 @@ export default function Masuk({ navigation, route }) {
             style={{
               fontFamily: fonts.secondary[800],
               fontSize: windowWidth / 25,
-              color: colors.zavalabs
+              color: colors.primary
             }}>OFFICE / KANTOR - {jarak} Meter</Text>
 
 
@@ -253,7 +253,7 @@ export default function Masuk({ navigation, route }) {
           <MyButton
             title="Ambil Foto"
             Icons="camera-outline"
-            warna="gray"
+            warna={colors.primary}
             iconColor={colors.white}
             colorText={colors.white}
             onPress={() => getCamera(1)}
@@ -264,7 +264,7 @@ export default function Masuk({ navigation, route }) {
       <MyButton
         title="MASUK SEKARANG"
         Icons="cloud-upload-outline"
-        warna={colors.secondary}
+        warna={colors.primary}
         iconColor={colors.white}
         colorText={colors.white}
         onPress={simpan}
