@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   Image,
   Linking,
+  ScrollView,
 } from 'react-native';
 import { windowWidth, fonts } from '../../utils/fonts';
 import { getData, storeData } from '../../utils/localStorage';
@@ -22,20 +23,15 @@ export default function Account({ navigation, route }) {
   const isFocused = useIsFocused();
   const [wa, setWA] = useState('');
 
-  const getWa = () => {
-    axios.get('https://zavalabs.com/niagabusana/api/company.php').then(res => {
-      setCom(res.data);
-      console.log(res);
-    });
-  };
+
 
   useEffect(() => {
     if (isFocused) {
       getData('user').then(res => {
         setUser(res);
-        // console.log(user);
+        console.error(res);
       });
-      getWa();
+
     }
   }, [isFocused]);
 
@@ -55,7 +51,15 @@ export default function Account({ navigation, route }) {
 
   return (
     <SafeAreaView>
-      <View style={{ padding: 10 }}>
+      <ScrollView style={{ padding: 10 }}>
+        <View style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+          <Image source={{
+            uri: user.foto_user,
+          }} style={{ width: 120, height: 120, borderRadius: 10, }} />
+        </View>
         <View
           style={{
             justifyContent: 'center',
@@ -86,7 +90,7 @@ export default function Account({ navigation, route }) {
             title="Edit Profile"
             colorText={colors.white}
             iconColor={colors.white}
-            warna={colors.primary}
+            warna={colors.secondary}
             Icons="create-outline"
           />
 
@@ -134,6 +138,28 @@ export default function Account({ navigation, route }) {
                   color: colors.primary,
                 }}>
                 {user.telepon}
+              </Text>
+            </View>
+            <View
+              style={{
+                marginVertical: 5,
+                padding: 10,
+                backgroundColor: colors.white,
+                borderRadius: 10,
+              }}>
+              <Text
+                style={{
+                  fontFamily: fonts.secondary[600],
+                  color: colors.black,
+                }}>
+                Alamat
+              </Text>
+              <Text
+                style={{
+                  fontFamily: fonts.secondary[400],
+                  color: colors.primary,
+                }}>
+                {user.alamat}
               </Text>
             </View>
             <View
@@ -215,8 +241,9 @@ export default function Account({ navigation, route }) {
             warna={colors.primary}
             Icons="log-out-outline"
           />
+          <MyGap jarak={10} />
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

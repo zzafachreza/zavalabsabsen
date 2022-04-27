@@ -54,7 +54,7 @@ export default function GetStarted({ navigation }) {
           alignItems: 'center',
         }}>
         <Image
-          source={require('../../assets/logo.png')}
+          source={require('../../assets/login-zabsen.png')}
           style={{
             resizeMode: 'contain',
             aspectRatio: 0.5,

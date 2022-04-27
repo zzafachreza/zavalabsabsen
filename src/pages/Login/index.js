@@ -101,10 +101,10 @@ export default function Login({ navigation }) {
             borderRadius: 10,
           }}>
           <Image
-            source={require('../../assets/logo2.png')}
+            source={require('../../assets/logo.png')}
             style={{
-              height: 100,
-              width: 350
+              resizeMode: 'contain',
+              aspectRatio: 1,
             }}
           />
         </View>

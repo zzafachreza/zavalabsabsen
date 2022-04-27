@@ -54,7 +54,7 @@ export default function Splash({ navigation }) {
   };
 
   useEffect(() => {
-    requestCameraPermission();
+    // requestCameraPermission();
 
     const unsubscribe = getData('user').then(res => {
       // console.log(res);
@@ -62,7 +62,7 @@ export default function Splash({ navigation }) {
         // console.log('beum login');
 
         setTimeout(() => {
-          navigation.replace('Login');
+          navigation.replace('GetStarted');
         }, 1500);
       } else {
         console.log('sudah login logon');
@@ -90,12 +90,12 @@ export default function Splash({ navigation }) {
             // paddingBottom: windowHeight / 4,
           }}>
           <Animated.Image
-            source={require('../../assets/logo.png')}
+            source={require('../../assets/login-zabsen.png')}
             style={{
               resizeMode: 'contain',
               // resizeMode: 'center',
 
-              height: 200,
+              height: 300,
               aspectRatio: scaleLogo,
             }}
           />
@@ -108,20 +108,20 @@ export default function Splash({ navigation }) {
           <Text
             style={{
               fontFamily: fonts.secondary[800],
-              fontSize: windowWidth / 8,
+              fontSize: windowWidth / 5,
               color: colors.primary,
               textAlign: 'center',
             }}>
-            Z - ABSEN
+            Z-ABSEN
           </Text>
           <Text
             style={{
               fontFamily: fonts.tertiary[600],
-              fontSize: windowWidth / 18,
-              color: colors.black,
+              fontSize: windowWidth / 20,
+              color: colors.secondary,
               textAlign: 'center',
             }}>
-            By ZAVALABS Mobile Apps
+            PT. ZAVALABS TEKNOLOGI INDONESIA
           </Text>
         </Animated.View>
       </View>

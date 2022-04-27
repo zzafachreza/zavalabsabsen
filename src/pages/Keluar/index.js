@@ -5,6 +5,7 @@ import {
   Button,
   View,
   Image,
+  PermissionsAndroid,
   ScrollView,
   ImageBackground,
   Dimensions,
@@ -48,6 +49,7 @@ export default function Masuk({ navigation, route }) {
     quality: 0.5,
     maxWidth: 300,
     maxHeight: 300,
+    cameraType: 'front'
   };
 
   const getCamera = xyz => {
@@ -75,9 +77,29 @@ export default function Masuk({ navigation, route }) {
     });
   };
 
+  const requestCameraPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        {
+          title: 'Izinkan Untuk Akses Kamera',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('You can use Location');
+      } else {
+        console.log('Location permission denied');
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
+
   useEffect(() => {
 
-
+    requestCameraPermission();
     axios
       .get('https://pentarapanputra.zavalabs.com/api/company.php')
       .then(tol => {
@@ -241,7 +263,7 @@ export default function Masuk({ navigation, route }) {
           <MyButton
             title="Ambil Foto"
             Icons="camera-outline"
-            warna={colors.primary}
+            warna="gray"
             iconColor={colors.white}
             colorText={colors.white}
             onPress={() => getCamera(1)}

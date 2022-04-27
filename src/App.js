@@ -14,8 +14,8 @@ export default function App() {
 
   PushNotification.createChannel(
     {
-      channelId: 'zavalabsabsen', // (required)
-      channelName: 'mysukha', // (required)
+      channelId: 'zabsen_zavalabs', // (required)
+      channelName: 'zabsen', // (required)
       channelDescription: 'A channel to categorise your notifications', // (optional) default: undefined.
       playSound: true, // (optional) default: true
       soundName: 'default', // (optional) See `soundName` parameter of `localNotification` function
