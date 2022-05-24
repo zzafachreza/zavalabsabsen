@@ -107,6 +107,8 @@ export default function Home({ navigation }) {
   useEffect(() => {
 
     requestCameraPermission();
+
+
     const unsubscribe = messaging().onMessage(async remoteMessage => {
 
       const json = JSON.stringify(remoteMessage);
@@ -300,7 +302,7 @@ export default function Home({ navigation }) {
               }}>
               <Image
                 source={require('../../assets/logo.png')}
-                style={{ width: 30, aspectRatio: 0.3, resizeMode: 'contain' }}
+                style={{ width: 30, aspectRatio: 0.5, resizeMode: 'contain' }}
               />
             </View>
 

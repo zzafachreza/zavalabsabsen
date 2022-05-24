@@ -108,7 +108,7 @@ export default function Splash({ navigation }) {
           <Text
             style={{
               fontFamily: fonts.secondary[800],
-              fontSize: windowWidth / 5,
+              fontSize: windowWidth / 8,
               color: colors.primary,
               textAlign: 'center',
             }}>
@@ -117,8 +117,8 @@ export default function Splash({ navigation }) {
           <Text
             style={{
               fontFamily: fonts.tertiary[600],
-              fontSize: windowWidth / 20,
-              color: colors.secondary,
+              fontSize: windowWidth / 25,
+              color: colors.black,
               textAlign: 'center',
             }}>
             PT. ZAVALABS TEKNOLOGI INDONESIA

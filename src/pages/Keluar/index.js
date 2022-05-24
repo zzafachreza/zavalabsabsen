@@ -39,7 +39,7 @@ export default function Masuk({ navigation, route }) {
   });
 
   const [kirim, setKirim] = useState({
-    foto: null,
+    foto: '',
     jenis: 'PULANG',
     tipe: route.params.jenis,
   });
@@ -101,14 +101,14 @@ export default function Masuk({ navigation, route }) {
 
     requestCameraPermission();
     axios
-      .get('https://pentarapanputra.zavalabs.com/api/company.php')
+      .get('https://absen.zavalabs.com/api/company.php')
       .then(tol => {
+        console.log('toleransi', tol.data)
         setToleransi(tol.data.toleransi);
       });
 
     getData('user').then(res => {
       setData(res);
-      console.log(res);
       GetLocation.getCurrentPosition({
         enableHighAccuracy: true,
         timeout: 15000,
@@ -252,9 +252,9 @@ export default function Masuk({ navigation, route }) {
             <Image
               source={{
                 uri:
-                  data.foto == null
+                  kirim.foto == ''
                     ? 'https://zavalabs.com/nogambar.jpg'
-                    : data.foto,
+                    : kirim.foto,
               }}
               style={{ width: 300, height: 400 }}
             />

@@ -108,7 +108,7 @@ export default function EditProfile({ navigation, route }) {
         </Text>
         <Image
           source={{
-            uri: data.foto_user,
+            uri: data.foto_user == '' ? foto : data.foto_user,
           }}
           style={{
             width: '100%',
@@ -156,7 +156,6 @@ export default function EditProfile({ navigation, route }) {
       setData(res);
       console.error('data user', res);
     });
-    console.log('test edit');
   }, []);
 
   const simpan = () => {
@@ -338,11 +337,12 @@ export default function EditProfile({ navigation, route }) {
           fontFamily: fonts.secondary[600],
           color: colors.primary,
           fontSize: windowWidth / 25,
-        }}>Tanggal Lahir</Text>
-        <DatePicker title="Tanggal Lahir" mode="date" date={data.tanggal_lahir == null ? new Date() : new Date(data.tanggal_lahir)} onDateChange={val => setData({
+        }}>Tanggal Lahir {data.tanggal_lahir}</Text>
+        {/* <DatePicker title="Tanggal Lahir" mode="date" date={data.tanggal_lahir} onDateChange={val => setData({
           ...data,
           tanggal_lahir: val
-        })} />
+        })} /> */}
+        <MyGap jarak={10} /><MyInput label='Tanggal Lahir' iconname='calendar-outline' value={data.tanggal_lahir} onChangeText={value => setData({ ...data, tanggal_lahir: value, })} />
         <MyGap jarak={10} /><MyInput label='Agama' iconname='albums-outline' value={data.agama} onChangeText={value => setData({ ...data, agama: value, })} />
         <MyGap jarak={10} /><MyInput label='Suku' iconname='albums-outline' value={data.suku} onChangeText={value => setData({ ...data, suku: value, })} />
         <MyGap jarak={10} /><MyInput label='Kewarganegaraan' iconname='albums-outline' value={data.kewarganegaraan} onChangeText={value => setData({ ...data, kewarganegaraan: value, })} />

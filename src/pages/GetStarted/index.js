@@ -76,7 +76,7 @@ export default function GetStarted({ navigation }) {
         iconColor={colors.white}
         Icons="create-outline"
         colorText={colors.white}
-        warna={colors.secondary}
+        warna={colors.success}
         onPress={() => navigation.navigate('Register')}
       />
 
